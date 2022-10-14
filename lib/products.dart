@@ -2,6 +2,7 @@
 // import 'package:deliveryapp/menucard.dart';
 // import 'package:deliveryapp/singlemenu.dart';
 // import 'package:deliveryapp/table.dart';
+import 'package:deliveryapp/scan.dart';
 import 'package:deliveryapp/singleproduct.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,21 +21,21 @@ class _ProductsState extends State<Products> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // When the User clicks on the button, display a BottomSheet
-      //     showModalBottomSheet(
-      //       context: context,
-      //       builder: (context) {
-      //         return addNewOrder(context);
-      //       },
-      //     );
-      //   },
-      //   child: const Icon(Icons.table_bar),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ScanQrPage()),
+          );
+        },
+        child: const Icon(Icons.qr_code),
+      ),
       body: StreamBuilder(
         // Reading Items form our Database Using the StreamBuilder widget
-        stream: db.collection('products').where("status",isEqualTo: widget.title).snapshots(),
+        stream: db
+            .collection('products')
+            .where("status", isEqualTo: widget.title)
+            .snapshots(),
         // orderBy("product").
         //where("type",isEqualTo: widget.title).orderBy("cat")
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -89,7 +90,7 @@ class _ProductsState extends State<Products> {
                 //       padding: const EdgeInsets.only(
                 //         top: 5,
                 //       ),
-                      // physics: const BouncingScrollPhysics(),
+                // physics: const BouncingScrollPhysics(),
                 //       children: [
                 //         const SizedBox(
                 //           height: 20,
@@ -135,10 +136,10 @@ class _ProductsState extends State<Products> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => SingleProduct(
-                              title: documentSnapshot['product'],
-                              status: documentSnapshot['status'],
-                              id: documentSnapshot.id,
-                              ),
+                            title: documentSnapshot['product'],
+                            status: documentSnapshot['status'],
+                            id: documentSnapshot.id,
+                          ),
                         ),
                       );
                     },

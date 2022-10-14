@@ -2,15 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 final db = FirebaseFirestore.instance;
-String? value;
-String? image;
-String? des;
-String? type;
 String? product;
-String? status;
+String? status = 'todeliver';
 String? desc;
-String? price; // use num data type
-String? available;
+
 bool isUpdate=false;
 
 class AddProduct extends StatelessWidget {
@@ -21,85 +16,96 @@ class AddProduct extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Add Product'),),
       body: Padding(
-        padding: const EdgeInsets.only(top: 100),
+        padding: const EdgeInsets.only(top: 30),
         child: ListView(
           children: [
             ListTile(
               // width: MediaQuery.of(context).size.width * 0.9,
               title: Column(
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      // Used a ternary operator to check if isUpdate is true then display
-                      // Update name.
-                      labelText: isUpdate ? 'Update Product' : 'Add Product',
-                      hintText: 'Enter Product Name',
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        // Used a ternary operator to check if isUpdate is true then display
+                        // Update name.
+                        labelText: isUpdate ? 'Update Product' : 'Product Name',
+                        hintText: 'Enter Product Name',
+                      ),
+                      onChanged: (String _val) {
+                        // Storing the value of the text entered in the variable value.
+                        product = _val;
+                      },
                     ),
-                    onChanged: (String _val) {
-                      // Storing the value of the text entered in the variable value.
-                      product = _val;
-                    },
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      // Used a ternary operator to check if isUpdate is true then display
-                      // Update name.
-                      labelText: isUpdate ? 'Update Product' : 'Add Product',
-                      hintText: 'Enter Product Name',
-                    ),
-                    onChanged: (String _val) {
-                      // Storing the value of the text entered in the variable value.
-                      desc = _val;
-                    },
                   ),
 
-                  TextField(
-                    decoration: InputDecoration(
-                      border: const OutlineInputBorder(),
-                      // Used a ternary operator to check if isUpdate is true then display
-                      // Update name.
-                      labelText: isUpdate ? 'Update Product' : 'Add Product',
-                      hintText: 'Enter Product Name',
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        labelText: isUpdate ? 'Update Product' : 'Product Description',
+                        hintText: 'Enter Product Description',
+                      ),
+                      onChanged: (String _val) {
+                        desc = _val;
+                      },
                     ),
-                    onChanged: (String _val) {
-                      // Storing the value of the text entered in the variable value.
-                      status = _val;
-                    },
                   ),
-                  
+
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: TextField(
+                  //     decoration: InputDecoration(
+                  //       border: const OutlineInputBorder(),
+                  //       labelText: isUpdate ? 'Update Product' : 'Product Status',
+                  //       hintText: 'Enter Product Status',
+                  //     ),
+                  //     onChanged: (String _val) {
+                  //       status = _val;
+                  //     },
+                  //   ),
+                  // ),
+
                 ],
               ),
             ),
-            TextButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.lightBlueAccent),
-                ),
-                onPressed: () {
-                  // Check to see if isUpdate is true then update the value else add the value
-                  if (isUpdate) {
-                    // db.collection('product').doc(documentSnapshot?.id).update({
-                    //   'cat': product,
-                    //   // 'type': type,
-                    // });
-                  } else {
-                    db.collection('products').add({
-                      'product': product,
-                      'status': status,
-                      'desc': desc,
-                      // 'type': type,
-                    });
-                  }
-                  Navigator.pop(context);
-                },
-                child: isUpdate
-                    ? const Text(
-                        'UPDATE',
-                        style: TextStyle(color: Colors.white),
-                      )
-                    : const Text('ADD Product', style: TextStyle(color: Colors.white))),
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: SizedBox(
+                height: 40,
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.green),
+                    ),
+                    onPressed: () {
+                      // Check to see if isUpdate is true then update the value else add the value
+                      if (isUpdate) {
+                        // db.collection('product').doc(documentSnapshot?.id).update({
+                        //   'cat': product,
+                        //   // 'type': type,
+                        // });
+                      } else {
+                        db.collection('products').add({
+                          'product': product,
+                          'status': status,
+                          'desc': desc,
+                          // 'type': type,
+                        });
+                      }
+                      Navigator.pop(context);
+                    },
+                    child: isUpdate
+                        ? const Text(
+                            'UPDATE',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        : const Text('Add Product', style: TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w400))),
+              ),
+            ),
+            
           ],
         ),
       ),

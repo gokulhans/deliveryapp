@@ -1,4 +1,4 @@
-import 'package:deliveryapp/allcats.dart';
+import 'package:deliveryapp/addproduct.dart';
 import 'package:deliveryapp/deliverd.dart';
 import 'package:deliveryapp/products.dart';
 import 'package:deliveryapp/search.dart';
@@ -39,13 +39,11 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
         ),
         routes: {
-          'allcats': (ctx) {
-            return const AllCats(
-              title: 'IN',
-            );
-          },
           'search': (ctx) {
             return const Searchbar();
+          },
+          'add': (ctx) {
+            return const AddProduct();
           },
         },
         home: const SplashScreen());

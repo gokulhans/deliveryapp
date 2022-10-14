@@ -1,4 +1,5 @@
 import 'package:deliveryapp/addproduct.dart';
+import 'package:deliveryapp/ordertracking.dart';
 import 'package:deliveryapp/scan.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -49,6 +50,16 @@ class NavDrawer extends StatelessWidget {
               )
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.qr_code),
+            title: const Text('Order Tracking'),
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => OrderTrackingPage()),
+              )
+            },
+          ),
           // ListTile(
           //   leading: const Icon(Icons.table_bar),
           //   title: const Text('All Products'),
@@ -62,7 +73,7 @@ class NavDrawer extends StatelessWidget {
           // ListTile(
           //   leading: const Icon(Icons.table_bar),
           //   title: const Text('All Tables'),
-          //   onTap: () => {Navigator.of(context).pushNamed('alltables')},
+          //   onTap: () => {Navigator.of(context).pushNamed('add')},
           // ),
           // ListTile(
           //   leading: const Icon(Icons.admin_panel_settings_outlined),
