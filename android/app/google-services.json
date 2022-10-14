@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "550951656776",
+    "project_id": "delivery-app-9b900",
+    "storage_bucket": "delivery-app-9b900.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550951656776:android:c39d3e10141bb6e11d677d",
+        "android_client_info": {
+          "package_name": "com.gbroz.deliveryapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550951656776-k9t7q3ctbatfc9vmp8t6c21810n237cj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp-V-qVJ07OhyTL3-VtvwGKHkkWs3pLOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550951656776-k9t7q3ctbatfc9vmp8t6c21810n237cj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
